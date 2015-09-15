@@ -6,53 +6,6 @@ import (
 	"time"
 )
 
-func TestHob(t *testing.T) {
-	testCases := []struct {
-		s     string
-		valid bool
-	}{
-		{"LON", true},
-		{"DUB", true},
-		{"LO", false},
-		{"LOND", false},
-		{"lon", false},
-		{" LON", false},
-	}
-
-	for _, tc := range testCases {
-		err := Hob(reflect.ValueOf(tc.s))
-		passes := err == nil
-		if passes != tc.valid {
-			t.Errorf("Expected %v to return %v", tc.s, tc.valid)
-		}
-	}
-}
-
-func TestHobId(t *testing.T) {
-	testCases := []struct {
-		s     string
-		valid bool
-	}{
-		{"LON1234", true},
-		{"DUB1234", true},
-		{"LO", false},
-		{"LOND", false},
-		{"lon1234", false},
-		{"LO1234", false},
-		{"LONLON1234", false},
-		{"AB=1234", false},
-		{"", true},
-	}
-
-	for _, tc := range testCases {
-		err := HobId(reflect.ValueOf(tc.s))
-		passes := err == nil
-		if passes != tc.valid {
-			t.Errorf("Expected %v to return %v", tc.s, tc.valid)
-		}
-	}
-}
-
 func TestCurrencyCode(t *testing.T) {
 	testCases := []struct {
 		s     string
