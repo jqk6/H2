@@ -11,9 +11,7 @@ import (
 )
 
 var (
-	regexpCurrencyCode  = regexp.MustCompile("^[A-Z]{3}$")
-	regexpHob           = regexp.MustCompile("^[A-Z]{3}$")
-	regexpOptionalHobId = regexp.MustCompile("^([A-Z]{3}[0-9]+)?$")
+	regexpCurrencyCode = regexp.MustCompile("^[A-Z]{3}$")
 )
 
 func Chain(validator *Validator) func(v reflect.Value) error {
@@ -60,20 +58,8 @@ func City(v reflect.Value) error {
 	return Hob(v)
 }
 
-func Hob(v reflect.Value) error {
-	return Regexp(regexpHob)(v)
-}
-
 func CurrencyCode(v reflect.Value) error {
 	return Regexp(regexpCurrencyCode)(v)
-}
-
-func CityId(v reflect.Value) error {
-	return HobId(v)
-}
-
-func HobId(v reflect.Value) error {
-	return Regexp(regexpOptionalHobId)(v)
 }
 
 func OneOf(allowed ...interface{}) Rule {
