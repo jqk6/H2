@@ -1,6 +1,7 @@
 window.HailoConfig = {
     "environment": {
-        "h2APIBaseURL": "http://hlabs.com:8080",
+        "h2APIBasePort": "8080",
+        "sameHost": true, 
         "environment": "dev"
     },
     "config": {}

@@ -11,11 +11,16 @@ define([
      * @return {Webapp} A webapp
      */
     var getWebapp = function(r) {
+        // Crazy temp cruft
+        // this means the web pages and the apis must be server from the same address : (
+        // only doing this if sameHost is true in environment.json would be nice....
+        var prot = window.location.protocol + '//';
+        var url = prot + r.id + "." + window.location.hostname.split(".").slice(1).join(".");
         return new Webapp({
             id          : r.id          || '',
             name        : r.name        || '',
             version     : r.version     || '',
-            url         : r.url         || '',
+            url         : url           || '',
             title       : r.title       || '',
             description : r.description || '',
             roles       : r.roles       || [],

@@ -54,10 +54,6 @@ func NotEmpty(v reflect.Value) error {
 	return nil
 }
 
-func City(v reflect.Value) error {
-	return Hob(v)
-}
-
 func CurrencyCode(v reflect.Value) error {
 	return Regexp(regexpCurrencyCode)(v)
 }
