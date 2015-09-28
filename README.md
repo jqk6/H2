@@ -73,7 +73,6 @@ You don't have time to build a fully fledged frontend for your app? The playgrou
 
 - Git
 - Install Go and configure your GOPATH. If you don't know how to you can follow https://golang.org/doc/code.html
-- Bazaar - Go needs it
 - Cassandra CLI tool named cqlsh. You can install it via pip.
 - Docker
 
