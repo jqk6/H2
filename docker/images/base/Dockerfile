@@ -11,4 +11,6 @@ RUN mkdir -p /opt/hailo/bin && mkdir -p /opt/hailo/login-service
 ADD public-key /opt/hailo/login-service/public-key
 RUN chmod 500 /opt/hailo/login-service/public-key
 
+ADD seelog.xml /opt/hailo/etc/seelog.xml
+
 CMD /opt/hailo/bin/service
