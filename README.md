@@ -93,16 +93,10 @@ docker-machine create --driver virtualbox --virtualbox-memory "2048" h2
 to create docker machine. (The amount of memory is important - Cassandra might fail to start with less.)
 
 2. Get its ip by typing `docker-machine ip h2`. 
-3. Update your `/etc/hosts` file with the ip of h2 machine to enable the web apps.
+3. Use [xip.io](http://xip.io) to access your host:
 
 ```
-192.168.59.103 hlabs.com
-192.168.59.103 hshell.hlabs.com
-192.168.59.103 login.hlabs.com
-192.168.59.103 homescreen.hlabs.com
-192.168.59.103 playground.hlabs.com
-192.168.59.103 dev-config.hlabs.com
-192.168.59.103 users.hlabs.com
+hshell.192.168.59.103.xip.io
 ```
 
 Replace 192.168.59.103 with your h2 machine's ip.
@@ -143,7 +137,7 @@ go get
 sudo -E go run main.go
 ```
 
-Once you get everything up and running successfully, you should be able to access http://hshell.hlabs.com ( default username is admin and password is Password1 )
+Once you get everything up and running successfully, you should be able to access http://hshell.[your ip].xip.io ( default username is admin and password is Password1 )
 
 Try listing all services running using `ls` command. You should see `com.hailocab.service.template` in the list. To run the example endpoint of it
 
@@ -160,7 +154,6 @@ Try listing all services running using `ls` command. You should see `com.hailoca
 ### Known issues
 
 - The homescreen & users web login page does not work. Use the hshell one to get around this.
-- The hlabs domain is hardcoded in the nginx config and in the web discovery binary.
 
 ### Troubleshooting
 

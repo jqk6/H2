@@ -12,11 +12,13 @@
     'use strict';
     // existing version for noConflict()
     var _Base64 = global.Base64;
-    var version = "2.1.6";
+    var version = "2.1.9";
     // if node.js, we use Buffer
     var buffer;
     if (typeof module !== 'undefined' && module.exports) {
-        buffer = require('buffer').Buffer;
+        try {
+            buffer = require('buffer').Buffer;
+        } catch (err) {}
     }
     // constants
     var b64chars
@@ -69,12 +71,14 @@
     } : function(b) {
         return b.replace(/[\s\S]{1,3}/g, cb_encode);
     };
-    var _encode = buffer
-        ? function (u) { return (new buffer(u)).toString('base64') } 
+    var _encode = buffer ? function (u) {
+        return (u.constructor === buffer.constructor ? u : new buffer(u))
+        .toString('base64')
+    }
     : function (u) { return btoa(utob(u)) }
     ;
     var encode = function(u, urisafe) {
-        return !urisafe 
+        return !urisafe
             ? _encode(String(u))
             : _encode(String(u)).replace(/[+\/]/g, function(m0) {
                 return m0 == '+' ? '-' : '_';
@@ -133,8 +137,10 @@
     } : function(a){
         return a.replace(/[\s\S]{1,4}/g, cb_decode);
     };
-    var _decode = buffer
-        ? function(a) { return (new buffer(a, 'base64')).toString() }
+    var _decode = buffer ? function(a) {
+        return (a.constructor === buffer.constructor
+                ? a : new buffer(a, 'base64')).toString();
+    }
     : function(a) { return btou(atob(a)) };
     var decode = function(a){
         return _decode(
@@ -182,8 +188,7 @@
         };
     }
     // that's it!
+    if (global['Meteor']) {
+       Base64 = global.Base64; // for normal export in Meteor.js
+    }
 })(this);
-
-if (this['Meteor']) {
-    Base64 = global.Base64; // for normal export in Meteor.js
-}

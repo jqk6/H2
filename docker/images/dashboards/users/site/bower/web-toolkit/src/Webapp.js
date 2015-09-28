@@ -55,7 +55,14 @@ define([
         this._googleAnalytics = new GoogleAnalytics;
 
         var api = params.api || webapp.config.then(function(config) {
-            return new API(config.environment.h2APIBaseURL);
+            var basePort = config.environment.h2APIBasePort ? config.environment.h2APIBasePort : null,
+                params = {
+                    baseUrl: config.environment.h2APIBaseURL,
+                    basePort: basePort,
+                    sameHost: config.environment.sameHost
+                };
+
+            return new API(params);
         });
 
         // thenAsap() is required to support older webapps where they instantiate

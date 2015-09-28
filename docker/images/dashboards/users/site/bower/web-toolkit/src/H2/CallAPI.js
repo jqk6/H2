@@ -56,6 +56,20 @@ define([
     var API = function (params) {
         params = typeof params == 'string' && {baseUrl: params} || params;
         Events.mixin(this);
+        var hostname = window.location.hostname;
+        var sameHost = function (str) {
+            return str.split(".").slice(1).join(".")
+        }
+        if (params.sameHost) {
+            hostname = sameHost(hostname);
+        }
+        if (!params.baseUrl) {
+            params.baseUrl = "//" + hostname;
+            params.baseUrl += !params.basePort ? ':' + window.location.port:'';
+        }
+        if (params.basePort) {
+            params.baseUrl += ':' + params.basePort;
+        }
         this._baseURL = params.baseUrl;
         this._timeout = params._timeout || 10 /* seconds */ * 1000;
         this.setSession(Session.createAnonymous());
