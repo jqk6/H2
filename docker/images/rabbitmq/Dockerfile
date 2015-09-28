@@ -1,9 +1,9 @@
-FROM rabbitmq:management
+FROM rabbitmq:3.5.4-management
 MAINTAINER H2 Platform <platform@hailocab.com>
 
 # Setup RabbitMQ for H2
 ADD ./rabbitmq_hailo_magic_exchange-0.3.0-rmq0.0.0.ez /usr/lib/rabbitmq/lib/rabbitmq_server-3.5.4/plugins/rabbitmq_hailo_magic_exchange-0.3.0-rmq0.0.0.ez
-RUN chmod 777 /usr/lib/rabbitmq/lib/rabbitmq_server-3.5.4/plugins/rabbitmq_hailo_magic_exchange-0.3.0-rmq0.0.0.ez 
+RUN chmod 777 /usr/lib/rabbitmq/lib/rabbitmq_server-3.5.4/plugins/rabbitmq_hailo_magic_exchange-0.3.0-rmq0.0.0.ez
 RUN rabbitmq-plugins enable rabbitmq_hailo_magic_exchange
 
 ADD ./load_definitions /etc/rabbitmq/load_definitions.json
