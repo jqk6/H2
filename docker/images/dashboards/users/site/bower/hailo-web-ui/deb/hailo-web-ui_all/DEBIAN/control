@@ -1,9 +1,0 @@
-Package: hailo-web-ui
-Version: 1.0.0
-Architecture: all
-Essential: no
-Section: Applications
-Priority: optional
-Maintainer: devops@hailocab.com
-Installed-Size: 500
-Description: Hailo Web UI
