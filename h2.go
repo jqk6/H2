@@ -1,9 +1,9 @@
 package h2
 
 import (
-	"github.com/hailocab/h2/go/internal/p/errors"
-	"github.com/hailocab/h2/go/internal/p/multiclient"
-	"github.com/hailocab/h2/go/internal/p/server"
+	"github.com/hailocab/platform-layer/errors"
+	"github.com/hailocab/platform-layer/multiclient"
+	"github.com/hailocab/platform-layer/server"
 	"github.com/hailocab/protobuf/proto"
 )
 
